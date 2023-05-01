@@ -3,10 +3,12 @@ package com.felipe.cliente;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-@Path("api/cliente-client")
+@Path("api/cliente-rest-client")
 public class ClienteResource {
 
     @Inject
@@ -14,12 +16,15 @@ public class ClienteResource {
     private ClienteRestClient clientServiceClient;
 
     @GET
-    public Response save() {
-        Cliente cliente = Cliente.of(1L, "Remoto");
-        Response response = clientServiceClient.save(cliente);
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Cliente findById(@PathParam("id") Long id) {
+        return clientServiceClient.findById(id);
+    }
 
-        return Response.status(Response.Status.CREATED)
-                .entity(response)
-                .build();
+    @GET
+    public String save() {
+        Cliente cliente = Cliente.of(1L, "Remoto");
+        return clientServiceClient.save(cliente);
     }
 }

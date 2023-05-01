@@ -1,20 +1,18 @@
 package com.felipe.reserva;
 
 import com.felipe.cliente.Cliente;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Reserva {
 
-    private Cliente cliente;
+    private Long id;
+    private Long clienteId;
 
-    private Reserva(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Reserva of(Cliente cliente) {
-        return new Reserva(cliente);
+    public static Reserva of(Long id, Long clienteId) {
+        return new Reserva(id, clienteId);
     }
 }

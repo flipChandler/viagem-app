@@ -1,19 +1,15 @@
 package com.felipe.cliente;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Cliente {
 
     private Long id;
     private String nome;
-
-    private Cliente(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
 
     public static Cliente of(Long id, String nome) {
         return new Cliente(id, nome);

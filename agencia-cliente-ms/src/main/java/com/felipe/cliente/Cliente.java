@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "cliente")
+@Table(name = "Cliente")
 public class Cliente extends PanacheEntity {
 
     private String nome;
